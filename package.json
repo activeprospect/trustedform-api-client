@@ -25,5 +25,8 @@
     "chai": "^4.2.0",
     "mocha": "^7.1.0",
     "nock": "^12.0.2"
+  },
+  "dependencies": {
+    "request": "^2.88.2"
   }
 }
