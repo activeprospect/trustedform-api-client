@@ -1,6 +1,14 @@
 const _ = require('lodash');
 const request = require('request');
 
+class TrustedFormError extends Error {
+  constructor(message, statusCode, body) {
+    super(message);
+    this.statusCode = statusCode;
+    this.body = body;
+  }
+}
+
 class Client {
   constructor(apiKey, env) {
     let baseUrl;
@@ -20,8 +28,14 @@ class Client {
       }
   }
 
-  claim() {
-    // magic
+  claim(uri, callback) {
+    this._request({ uri }, (err, res, body) => {
+      if (err) return callback(err);
+      if (res.statusCode !== 200) {
+        return callback(new TrustedFormError('Cound not claim form', res.statusCode, body));
+      }
+      callback(null, body);
+    });
   }
 
   _request(options, callback) {
