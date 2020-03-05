@@ -22,12 +22,17 @@ class Client {
   claim(options, callback) { 
     const { cert_url, required_text, forbidden_text } = options;
     const url = new URL(cert_url);
-    if (required_text)  url.searchParams.append('scan', required_text);
-    if (forbidden_text) url.searchParams.append('scan!', forbidden_text);
+    
+    for (const param in params) {
+      if (options[param]) {
+        url.searchParams.append(params[param], options[param])
+      }
+    }
+
     this._request({ url: url.href }, (err, res, body) => {
       if (err) return callback(err);
       if (res.statusCode !== 201) {
-        return callback(new TrustedFormError('Cound not claim form', res.statusCode, body));
+        return callback(new TrustedFormError('Could not claim form', res.statusCode, body));
       }
       callback(null, body);
     });
@@ -54,5 +59,12 @@ class Client {
     });
   }
 }
+
+const params = {
+  'required_text': 'scan',
+  'forbidden_text': 'scan!',
+  'reference': 'reference',
+  'vendor': 'vendor'
+};
 
 module.exports = Client;
