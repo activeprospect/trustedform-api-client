@@ -2,7 +2,7 @@ const _ = require('lodash');
 const request = require('request');
 
 class Client {
-  constructor() {
+  constructor(apiKey, env) {
     let baseUrl;
     if (env === 'production')
       baseUrl = 'https://cert.trustedform.com';
@@ -14,7 +14,8 @@ class Client {
       this.base = {
         url: baseUrl,
         headers: {
-          'Accept': 'application/json'
+          'Accept': 'application/json',
+          'Authorization': `Basic ${new Buffer(`X:${apiKey}`).toString('base64')}`
         }
       }
   }
@@ -23,8 +24,25 @@ class Client {
     // magic
   }
 
-  _request(options, classback) {
-    // request stuff
+  _request(options, callback) {
+    const opts = {
+      url: `${this.base.url}${options.uri}`,
+      method: 'POST',
+      headers: _.merge({}, this.base.headers, options.headers)
+    }
+
+    request(opts, (err, res, body) => {
+      if (err) return callback(err);
+      const contentType = res.headers['content-type'];
+      if (contentType && contentType.indexOf('json') > -1 && _.isString(body)) {
+        try {
+          body = JSON.parse(body);
+        } catch (err) {
+          return callback(err);
+        }
+      }
+      callback(null, res, body);
+    });
   }
 }
 
