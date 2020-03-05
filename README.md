@@ -5,7 +5,7 @@ This is a Node.js module for calling the TrustedForm API.
 
 ### Client
 
-To use SuppressionList, require this module and create a new Client instance using your API key.
+To use TrustedForm, require this module and create a new Client instance using your API key.
 
 ```javascript
 const Client = require('trustedform-api-client');
