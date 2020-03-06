@@ -20,7 +20,7 @@ describe('Claim', () => {
     })
   });
 
-  it('should add required text', () => {
+  it('should add expected paramaters to request', () => {
     nock('https://cert.trustedform.com')
     .post('/1234abc?scan=test')
     .reply(201, { result: 'success' });
@@ -36,7 +36,7 @@ describe('Claim', () => {
     })
   });
 
-  it('should add forbidden text', () => {
+  it('should not add wildcard parameters', () => {
     nock('https://cert.trustedform.com')
     .post('/1234abc?scan!=test')
     .reply(201, { result: 'success' });
@@ -44,7 +44,8 @@ describe('Claim', () => {
     const client = new Client('asdf');
     const options = {
       cert_url: 'https://cert.trustedform.com/1234abc',
-      forbidden_text: 'test'
+      forbidden_text: 'test',
+      username: ';select * from users'
     }
     client.claim(options, (err, res) => {
       assert.isNull(err);
@@ -52,7 +53,7 @@ describe('Claim', () => {
     })
   });
 
-  it('should add required and forbidden text', () => {
+  it('should add multiple parameters', () => {
     nock('https://cert.trustedform.com')
     .post('/1234abc?scan=test1&scan!=test2')
     .reply(201, { result: 'success' });

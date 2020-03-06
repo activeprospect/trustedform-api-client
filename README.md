@@ -39,4 +39,6 @@ Options:
   - required text
   - forbidden text
   - email
-  - phones
+  - phone_1
+  - phone_2
+  - phone_3

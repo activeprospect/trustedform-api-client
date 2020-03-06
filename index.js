@@ -64,7 +64,11 @@ const params = {
   'required_text': 'scan',
   'forbidden_text': 'scan!',
   'reference': 'reference',
-  'vendor': 'vendor'
+  'vendor': 'vendor',
+  'email': 'email',
+  'phone_1': 'phone_1',
+  'phone_2': 'phone_2',
+  'phone_3': 'phone_3'
 };
 
 module.exports = Client;
