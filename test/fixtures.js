@@ -1,5 +1,5 @@
-const fixture_one = {
-  "id": "5e613a0ab8f86eafdd096777",
+const basic_fixture = {
+  "id": "123",
   "created_at": "2020-03-05T17:42:34Z",
   "masked_cert_url": "https://cert.trustedform.com/a60da7d102720af6a6aa9a2085330a00402b038e",
   "masked": false,
@@ -167,8 +167,402 @@ const fixture_one = {
           }
       ]
   }
+};
+
+const scan_fixture = {
+    "id": "5e6690f0262c103c9b1b07e2",
+    "created_at": "2020-03-09T18:54:40Z",
+    "masked_cert_url": "https://cert.trustedform.com/6abce6d3b5f9cb6396569244ff1a1bc117b7b620",
+    "masked": false,
+    "expires_at": "2025-03-08T18:54:40Z",
+    "age": 8,
+    "page_id": "5e66774ce21a9c5ff019fc03",
+    "warnings": [],
+    "reference": null,
+    "vendor": null,
+    "scans": {
+        "found": [
+            "test"
+        ],
+        "not_found": []
+    },
+    "fingerprints": {
+        "matching": [],
+        "non_matching": []
+    },
+    "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=UTJOallWcFhXalZ5ZFZBNE4wTnVlbTFYVUM5UVpsbHRWMDlxWlZrM0wySk5VaXQyZDJWUWNETkxWR2RTUTFwNVJHOUtaWEZvUkdkNFdtczFNV1l3TDJoSk1FbHhkRFpZUkU4NGFFVndORWw2UkZsVVFXMHdObFZCUW1kakwzRkJSV0ZNTUdsc1RVbHNUa2s5TFMwMlpERkdMemh0V1U5a1VIWnJSakZTTUhoVmFIcG5QVDA9LS0wNjg0YWI4OGFhNGRjZjUwMjY4NTU1ZjRkM2UyMWVjODdkZDk1YWVk",
+    "cert": {
+        "token": "ab53363d0cc68d4bcd89c113d75c9c8e59a0eede",
+        "created_at": "2020-03-09T17:00:21Z",
+        "ip": "76.210.191.62",
+        "parent_location": null,
+        "location": "https://s3.amazonaws.com/leadconduit_assets/all-the-things.html",
+        "framed": false,
+        "browser": "Chrome 80.0.3987",
+        "operating_system": "Mac OS X 10.15.1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36",
+        "snapshot_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede/snapshot/index.html",
+        "expires_at": "2020-03-12T17:00:21Z",
+        "geo": {
+            "lat": 30.3544,
+            "lon": -97.7344,
+            "city": "Austin",
+            "state": "TX",
+            "postal_code": "78757",
+            "country_code": "US",
+            "time_zone": "America/Chicago"
+        },
+        "event_duration": 6851082,
+        "claims": [
+            {
+                "id": "5e66774ce21a9c5ff019fc04",
+                "created_at": "2020-03-09T17:05:16Z",
+                "masked_cert_url": "https://cert.trustedform.com/5de56cb0f258887e18d9396ef5b39960821144d3",
+                "masked": false,
+                "expires_at": "2025-03-08T17:05:16Z",
+                "age": 9,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": null,
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=UlRkRVpsVnlSR1JsVXpGWFVERTJVbGt4WjFJdmQwNVBSRlZTTmxCSFkxZ3JkRkJoVG1KU0wwWjVSWHBOTjNwNVZVaE9lVXR0UkRWc01ubGliM3B3V0RRdldEVTJVMWwzWjBvM1l5dFlRbnB5YkhVNWRWZFBkazFVWW5KNVVISjZUVVJFVlhCSmMybFNPVms5TFMxSVNVMDNOME50WjA0M2FsUjRSWGhJZVRRdlUwcDNQVDA9LS0yM2NmYzg2NmI3OWY5ZDliOTA4YWYwMGViYTk4MGRmNGVmODEyNDQ5"
+            },
+            {
+                "id": "5e6690f0262c103c9b1b07e2",
+                "created_at": "2020-03-09T18:54:40Z",
+                "masked_cert_url": "https://cert.trustedform.com/6abce6d3b5f9cb6396569244ff1a1bc117b7b620",
+                "masked": false,
+                "expires_at": "2025-03-08T18:54:40Z",
+                "age": 8,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": {
+                    "found": [
+                        "al"
+                    ],
+                    "not_found": []
+                },
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=ZGtWSlVrbE9VRWR3WW1WSVpIUk9kVzQyVG1aaU5FcFZTakZJT0dkS2VETjVia1ZOTURkVFJHdzVRVEE0Vmk5S1ZYTkNjMW95YjFSNlkxZ3phMll6YUZkMGIzRlZMMVY2U0dWdldIazJUR1ZvTm1OSlUwdzJZbVF5ZUZwdVoxSTNNbWxJTkZONVdFNXVkbmM5TFMweVpXTlZlVmt2YlVaRmNYWkpWbkJqYkZsTGNrbG5QVDA9LS04YzAzMWUwNWFjNDM1YzcwZWJlMDM4MDVjMWZhYjA1NzkxNjVkNmE3"
+            }
+        ]
+    }
+};
+
+const scan_and_forbidden_fixture = {
+    "id": "5e6691e3b8f86e18921905ed",
+    "created_at": "2020-03-09T18:58:43Z",
+    "masked_cert_url": "https://cert.trustedform.com/52931f9891cf45aafbd381b57d4178b7c9db54a7",
+    "masked": false,
+    "expires_at": "2025-03-08T18:58:43Z",
+    "age": 145,
+    "page_id": "5e66774ce21a9c5ff019fc03",
+    "warnings": [],
+    "reference": null,
+    "vendor": null,
+    "scans": {
+        "found": [
+            "test"
+        ],
+        "not_found": [
+            "waldo"
+        ]
+    },
+    "fingerprints": {
+        "matching": [],
+        "non_matching": []
+    },
+    "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=V2pkNVVVOTJXSGRvUzJSbVdHWkhka2x2VlRkQmMwWlVhbVZzYW10dlFVZFZkM05zTVhoTEswazVaMkYyVlZCMVpFTndkWE5GY2xOc1JWUkxNamswYlRac2JUZHNWMjUxVTJKRVptcFpZbVpOUlNzM1QySkJjVFZqTUdveU1EQmlUeTgyVHpaT1NrZFZWVms5TFMxSU9XbGpaVkZQYjFWSUwzcGpNbVZQU3pWMFdHNVJQVDA9LS0wYzkwMjFkMDNmYjNjZDU3NmUzN2YzMGRjYjBkYmU2NmUyMDI2NTk2",
+    "cert": {
+        "token": "ab53363d0cc68d4bcd89c113d75c9c8e59a0eede",
+        "created_at": "2020-03-09T17:00:21Z",
+        "ip": "76.210.191.62",
+        "parent_location": null,
+        "location": "https://s3.amazonaws.com/leadconduit_assets/all-the-things.html",
+        "framed": false,
+        "browser": "Chrome 80.0.3987",
+        "operating_system": "Mac OS X 10.15.1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36",
+        "snapshot_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede/snapshot/index.html",
+        "expires_at": "2020-03-12T17:00:21Z",
+        "geo": {
+            "lat": 30.3544,
+            "lon": -97.7344,
+            "city": "Austin",
+            "state": "TX",
+            "postal_code": "78757",
+            "country_code": "US",
+            "time_zone": "America/Chicago"
+        },
+        "event_duration": 6957659,
+        "claims": [
+            {
+                "id": "5e66774ce21a9c5ff019fc04",
+                "created_at": "2020-03-09T17:05:16Z",
+                "masked_cert_url": "https://cert.trustedform.com/5de56cb0f258887e18d9396ef5b39960821144d3",
+                "masked": false,
+                "expires_at": "2025-03-08T17:05:16Z",
+                "age": 9,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": null,
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=ZFVrNFVGWnBkSGwzS3pBdlVHSklOR1ZDVGtFdmVGaFVkbGhHT1hCcFVXbzRTMDQzVFdkUWJqUnNZMjlFU2xsMGJVOXZTSFpRVlVGVU1HeHFSbXN3WVhZcksxSTJVVVY2V0hoeVNYb3dZa2RpWlM5dGFYZzRaM2MzZDJOVE5tUjFlWFkzTW5wdWNESlpPV3M5TFMxd2RYbGFVa2xvVFZwTFZYQXlha3RCU0hkQ1JWQkJQVDA9LS0wOWQzOWU2NTYxOWQ2YTNiZmU0NzY5MDZhMjE2M2RlMDA4ODllOTg2"
+            },
+            {
+                "id": "5e6690f0262c103c9b1b07e2",
+                "created_at": "2020-03-09T18:54:40Z",
+                "masked_cert_url": "https://cert.trustedform.com/6abce6d3b5f9cb6396569244ff1a1bc117b7b620",
+                "masked": false,
+                "expires_at": "2025-03-08T18:54:40Z",
+                "age": 8,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": {
+                    "found": [
+                        "al"
+                    ],
+                    "not_found": []
+                },
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=V2s5MFNURkhUVU5UY1ZCVlFtTnRSMjk0Y2pOb1Mwd3lZekZGY1hnNWNXUjZVVEp5YTFrcmFWbElWVWhuZEdoT2NXRnRiVVl4VkVSeFIyUlRiV1ptZWxjd09XYzRjMkZ5TjBad1pIUkpPQzlZYmtWRU1VaHpUVlZYVDBaVlVtWm1iMU5PVkhKS1UwSTBWbGs5TFMxNFdDdHRZVE5tVEcxWFRFTmtWRlJoZEZCYU1WZDNQVDA9LS04Y2M1Yjg0ZGYwZDdjOTBlN2I5OTgxMDFjOWNhYTJlMGExNzYxMjg4"
+            },
+            {
+                "id": "5e6691ce3e2a09d19018dff1",
+                "created_at": "2020-03-09T18:58:22Z",
+                "masked_cert_url": "https://cert.trustedform.com/c7bb8e9e1bb2b3bd48e5edf3b8908657206664d0",
+                "masked": false,
+                "expires_at": "2025-03-08T18:58:22Z",
+                "age": 124,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": {
+                    "found": [
+                        "al"
+                    ],
+                    "not_found": [
+                        "forbidden"
+                    ]
+                },
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=S3pOc1NsQmthSHBCU2s5amR6Sk9WMWhtZUZKdGVtWnJObkZwUlRSNlowMU9jbHB0Y0dOMFFrNVZZV2hvY2tFNVp6UTVOV3B5YW5kUE9HMXFWalkwVHpWUlF5c3laak5HZW1RM2VEbHVSV0ozYVZrdmQwaDVjR3RhTDBjMk9HMXpTbUp4YVdaRlFWQmlVRWs5TFMxbk9FOURZV2RQZERkT1FUWmxiVU5TUkZkMlNXeG5QVDA9LS0xN2FlNTEzNWI4MmNmNzU3ODI0YTc2OGE5OWM0ZGJlMGM4NThhODE4"
+            },
+            {
+                "id": "5e6691e3b8f86e18921905ed",
+                "created_at": "2020-03-09T18:58:43Z",
+                "masked_cert_url": "https://cert.trustedform.com/52931f9891cf45aafbd381b57d4178b7c9db54a7",
+                "masked": false,
+                "expires_at": "2025-03-08T18:58:43Z",
+                "age": 145,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": {
+                    "found": [
+                        "al"
+                    ],
+                    "not_found": [
+                        "waldo"
+                    ]
+                },
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=Y2xNM1oyeFpiMUJOYjBkaWIyazFTMEpDY0VOTmVEQllUMFpxYmpWdFlTOWthVTl1TTBWYU1VVnNUMEYwV0dwemR6RkVVakZrT1VaMk4zY3pNVkpuUjJKWWQza3hWRmR1ZURBM0swdzVRMUp1YjJjNGJrTm1hMFpHVGtGNGFqbG1ZMWg0U1doRFdEbGlhVkU5TFMxMmMxbHlaM2M0T1hKbmVEUjRObTh3ZEZVNVJtbG5QVDA9LS1jNWE3NDBlNjE3ZmYwZTZhMmZlNDljNmZlMjBkOGJlZmRlYWY5ODA3"
+            }
+        ]
+    }
+}
+
+const fingerprint_fixture = {
+    "id": "5e6692b93e2a09d19018e13d",
+    "created_at": "2020-03-09T19:02:17Z",
+    "masked_cert_url": "https://cert.trustedform.com/8a264461344df2a64bfb5314af3e74be17db17b3",
+    "masked": false,
+    "expires_at": "2025-03-08T19:02:17Z",
+    "age": 6,
+    "page_id": "5e66774ce21a9c5ff019fc03",
+    "warnings": [],
+    "reference": null,
+    "vendor": null,
+    "scans": null,
+    "fingerprints": {
+        "matching": [
+            "456c6c7a59968bceccd208e9b9f4dde55b8e89f6",
+            "d511850d569bcd7802c30f54de34bb9f2b31eede"
+        ],
+        "non_matching": []
+    },
+    "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=UmtOeWVqZHdLemhEYkdGV1duUXhZUzk2VG5saGEzbHBjREJWTTA5U1UyMUVVVmxSTUVjdlVrczFjWGx5ZDBSaFRuUm9XbUZJYmxRNWFTOXZZVlkzYkcxTVVDODNRVEk0ZVhCSFJGVXdaVWRXU3pOd1lrc3hiRkZFVDJ0VFdUVmFjazVYVkVwU01tZHFTa2s5TFMxNGRFUnBaVEJhZUhsMWNIUlNNRkZHZHpKS1dsVjNQVDA9LS05YmZkMmU0MWQyMTgxNjE4NjM2NThmY2IxNWFkNjNmNjE1ZmJlODk0",
+    "cert": {
+        "token": "ab53363d0cc68d4bcd89c113d75c9c8e59a0eede",
+        "created_at": "2020-03-09T17:00:21Z",
+        "ip": "76.210.191.62",
+        "parent_location": null,
+        "location": "https://s3.amazonaws.com/leadconduit_assets/all-the-things.html",
+        "framed": false,
+        "browser": "Chrome 80.0.3987",
+        "operating_system": "Mac OS X 10.15.1",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36",
+        "snapshot_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede/snapshot/index.html",
+        "expires_at": "2020-03-12T17:00:21Z",
+        "geo": {
+            "lat": 30.3544,
+            "lon": -97.7344,
+            "city": "Austin",
+            "state": "TX",
+            "postal_code": "78757",
+            "country_code": "US",
+            "time_zone": "America/Chicago"
+        },
+        "event_duration": 7310880,
+        "claims": [
+            {
+                "id": "5e66774ce21a9c5ff019fc04",
+                "created_at": "2020-03-09T17:05:16Z",
+                "masked_cert_url": "https://cert.trustedform.com/5de56cb0f258887e18d9396ef5b39960821144d3",
+                "masked": false,
+                "expires_at": "2025-03-08T17:05:16Z",
+                "age": 9,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": null,
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=UzJsV1NUZzJkR1E1ZWpkSE9HdzNSa2RpZG5aYVYycGhhMm8xVVZWTFlsZHlZbUV4Y2xvNFNrbHpVVWR2Y2prcloxRnpkemsxZEd0QmVtMUhjSGxNVlZCSFZHcG9iMVJFVkU5YWJUUm5jR3QxWld4WE1ITlBkbk4wVEhsT01EUldNRkpGUzNrdlNsZzNiM2M5TFMxYVpUUTViMXBRWkhwd1RYZHJWazlEYW5wRlZXeG5QVDA9LS05OTlhN2VkNTlkMWY4OWMxZTlkMmY1YWFlOTY5Mzc2YzM0ZGU4YThh"
+            },
+            {
+                "id": "5e6690f0262c103c9b1b07e2",
+                "created_at": "2020-03-09T18:54:40Z",
+                "masked_cert_url": "https://cert.trustedform.com/6abce6d3b5f9cb6396569244ff1a1bc117b7b620",
+                "masked": false,
+                "expires_at": "2025-03-08T18:54:40Z",
+                "age": 8,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": {
+                    "found": [
+                        "al"
+                    ],
+                    "not_found": []
+                },
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=UlV0Wk4wNWxaMjlzT1doWk5qRk5iRU5tTUVabmJWSm5aMHh6T1ZCVVVXbEdRVkJOWmtOT2JWQnBRMmRYUkVZM1JESnJWM05pVVRsSVRHeHNWRWxUWkVsV1FXNVRUV0ZwTW5ORlJXVmthamQzZDBaVWF6bHlRMlZhU213Mk9WVXhXREJDY0ZSb1lucFdUVVU5TFMxc09Hb3ZjR2RXU0dFNVZHTlNSRzlSWkhSSFQzZFJQVDA9LS0yZGUxMTI5NWM1ZDg0NWMzOTdlNTY2ZTYyNjVjODEzMjMyNWNjZDky"
+            },
+            {
+                "id": "5e6691ce3e2a09d19018dff1",
+                "created_at": "2020-03-09T18:58:22Z",
+                "masked_cert_url": "https://cert.trustedform.com/c7bb8e9e1bb2b3bd48e5edf3b8908657206664d0",
+                "masked": false,
+                "expires_at": "2025-03-08T18:58:22Z",
+                "age": 124,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": {
+                    "found": [
+                        "al"
+                    ],
+                    "not_found": [
+                        "forbidden"
+                    ]
+                },
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=V1d4eGIyVjRLMjgzTjFSS1VrMVBRM1ZzUnpoSGRuSnhObmRFTVRnMGNFNVZUR3hsTW1kclFWSkJTM1ZTWW5acU4yaExaakZYUjBaS1ExQkZkR3N5YWtSb2EwRTBjM2hwYkV0MU9VZzFiSFUxV0hoMmVGQXdhbnBaUm5wT1dXUkRUa2hzVUdkNWVGSkdhMnM5TFMxSk0wTmtVV3hHY2twbFVtbFlhRXBZWm00eWFFdG5QVDA9LS0zMGU0NDYwZDJmNGUzOTNjMjIwOTU1OTczNjc0MzdjMWVhYTNkZTgx"
+            },
+            {
+                "id": "5e6691e3b8f86e18921905ed",
+                "created_at": "2020-03-09T18:58:43Z",
+                "masked_cert_url": "https://cert.trustedform.com/52931f9891cf45aafbd381b57d4178b7c9db54a7",
+                "masked": false,
+                "expires_at": "2025-03-08T18:58:43Z",
+                "age": 145,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": {
+                    "found": [
+                        "al"
+                    ],
+                    "not_found": [
+                        "waldo"
+                    ]
+                },
+                "fingerprints": {
+                    "matching": [],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=Y25aa2JIWm1jRTh2YlVGeFkwNWlkbTVQV2tzNVlVcFljRWxSVlVoSlNqRjVTM2h1U214V2JtTk1kMlExTUdOM1RDOTZhamQ0TUZNNWJDc3pPV2xJWmxoNlJHUmpjWEpGY3k5eU9YWjFURzB6ZGs5TldGUjJOVFppVTJRMWMyZGhRamhXY0M4eFoweGpXVkU5TFMxd2MzbFBMMk5MYVhJelJqUXJTa05yYTJkblVDOVJQVDA9LS05ZmIxMzMyNGE5MTFiZTk0MTYxOWU0NTVmYzJlYzVjMDQxYTAzZTFj"
+            },
+            {
+                "id": "5e6692b93e2a09d19018e13d",
+                "created_at": "2020-03-09T19:02:17Z",
+                "masked_cert_url": "https://cert.trustedform.com/8a264461344df2a64bfb5314af3e74be17db17b3",
+                "masked": false,
+                "expires_at": "2025-03-08T19:02:17Z",
+                "age": 6,
+                "page_id": "5e66774ce21a9c5ff019fc03",
+                "warnings": [],
+                "reference": null,
+                "vendor": null,
+                "scans": null,
+                "fingerprints": {
+                    "matching": [
+                        "456c6c7a59968bceccd208e9b9f4dde55b8e89f6",
+                        "d511850d569bcd7802c30f54de34bb9f2b31eede"
+                    ],
+                    "non_matching": []
+                },
+                "share_url": "https://cert.trustedform.com/ab53363d0cc68d4bcd89c113d75c9c8e59a0eede?shared_token=ZDBGclZWUklWemRUUmxvMVFXcHlObkZtUTBOUVNrVlBkbXcwYldrMVpWRkRjV2h4UkZGa1JXUXlVelpzV21kWlJYa3dTVUYwTUdwS1owSlNjRFpGYmpWdldWRkVPR1l3THpoa05uWm5PWGxIVTJ4NVprWXZjM0J4VWxKTk1uZzBlRmN5Y0RkdVp6Uk5jMmM5TFMwclEyWldPRkJCUkN0NFUwZG9kalJYV0cwNE1XeG5QVDA9LS0wMWM5MGVmNjk5NDQzODhlNjY1ZmE1ZGM5NTA3MDc3OWM3YjZlNGE5"
+            }
+        ]
+    }
 }
 
 module.exports = {
-  fixture_one
+  basic_fixture,
+  scan_fixture,
+  scan_and_forbidden_fixture,
+  fingerprint_fixture
 };
