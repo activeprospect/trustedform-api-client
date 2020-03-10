@@ -18,9 +18,9 @@ describe('Claim', () => {
     const options = {
       cert_url: 'https://cert.trustedform.com/1234abc'
     }
-    client.claim(options, (err, res) => {
+    client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.equal(res.id, '123');
+      assert.equal(body.id, '123');
     })
   });
 
@@ -34,9 +34,9 @@ describe('Claim', () => {
       cert_url: 'https://cert.trustedform.com/1234abc',
       required_text: 'test'
     }
-    client.claim(options, (err, res) => {
+    client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.equal(res.scans.found, 'test');
+      assert.equal(body.scans.found, 'test');
     })
   });
 
@@ -51,9 +51,9 @@ describe('Claim', () => {
       forbidden_text: 'test',
       username: ';select * from users'
     }
-    client.claim(options, (err, res) => {
+    client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.equal(res.id, '123');
+      assert.equal(body.id, '123');
     })
   });
 
@@ -68,10 +68,10 @@ describe('Claim', () => {
       required_text: 'test',
       forbidden_text: 'waldo'
     }
-    client.claim(options, (err, res) => {
+    client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.equal(res.scans.found, 'test');
-      assert.equal(res.scans.not_found, 'waldo');
+      assert.equal(body.scans.found, 'test');
+      assert.equal(body.scans.not_found, 'waldo');
     })
   });
 
@@ -86,9 +86,9 @@ describe('Claim', () => {
       email: 'test@test.com',
       phone_1: '123'
     }
-    client.claim(options, (err, res) => {
+    client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.exists(res.fingerprints.matching)
+      assert.exists(body.fingerprints.matching)
     })
   });
 
@@ -102,9 +102,9 @@ describe('Claim', () => {
       cert_url: 'https://cert.trustedform.com/1234abc',
       required_text : ['one', 'two']
     }
-    client.claim(options, (err, res) => {
+    client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.exists(res.fingerprints.matching)
+      assert.exists(body.fingerprints.matching)
     })
   });
 
@@ -119,9 +119,9 @@ describe('Claim', () => {
       required_text : 'one',
       forbidden_text: ['two', 'three']
     }
-    client.claim(options, (err, res) => {
+    client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.exists(res.fingerprints.matching)
+      assert.exists(body.fingerprints.matching)
     })
   });
 
@@ -134,7 +134,7 @@ describe('Claim', () => {
     const options = {
       cert_url: 'https://cert.trustedform.com/1234abc'
     } 
-    client.claim(options, (err, res) => {
+    client.claim(options, (err) => {
       assert.equal(err.statusCode, 403);
       assert.equal(err.message, 'Could not claim form');
       assert.equal(err.body.error, 'Invalid Authentication');
