@@ -14,22 +14,23 @@ class Client {
       this.base = {
         headers: {
           'Accept': 'application/json',
-          'Authorization': `Basic ${new Buffer(`X:${apiKey}`).toString('base64')}`
+          'Authorization': `Basic ${Buffer.from(`X:${apiKey}`).toString('base64')}`
         }
       }
   }
 
   claim(options, callback) { 
-    const { cert_url, required_text, forbidden_text } = options;
-    const url = new URL(cert_url);
-    
+    let  url = options.cert_url;
+    let queryString = '';
+
     for (const param in params) {
       if (options[param]) {
-        url.searchParams.append(params[param], options[param])
+        queryString += `${params[param]}=${options[param]}&`;
       }
     }
+    if (queryString !== '') url = `${url}?${queryString}`
 
-    this._request({ url: url.href }, (err, res, body) => {
+    this._request({ url }, (err, res, body) => {
       if (err) return callback(err);
       if (res.statusCode !== 201) {
         return callback(new TrustedFormError('Could not claim form', res.statusCode, body));

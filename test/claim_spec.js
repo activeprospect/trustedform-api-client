@@ -24,7 +24,7 @@ describe('Claim', () => {
     })
   });
 
-  it('should add expected paramaters to request', () => {
+  it('should add expected parameters to request', () => {
     nock('https://cert.trustedform.com')
     .post('/1234abc?scan=test')
     .reply(201, scan_fixture);
