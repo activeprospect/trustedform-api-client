@@ -26,7 +26,7 @@ describe('Claim', () => {
 
   it('should add expected parameters to request', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan=test')
+    .post('/1234abc?scan[]=test')
     .reply(201, scan_fixture);
 
     const client = new Client('asdf');
@@ -42,7 +42,7 @@ describe('Claim', () => {
 
   it('should not add wildcard parameters', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan!=test')
+    .post('/1234abc?scan![]=test')
     .reply(201, basic_fixture);
 
     const client = new Client('asdf');
@@ -59,7 +59,7 @@ describe('Claim', () => {
 
   it('should add multiple parameters', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan=test&scan!=waldo')
+    .post('/1234abc?scan[]=test&scan![]=waldo')
     .reply(201, scan_and_forbidden_fixture);
 
     const client = new Client('asdf');
@@ -90,7 +90,40 @@ describe('Claim', () => {
       assert.isNull(err);
       assert.exists(res.fingerprints.matching)
     })
-  })
+  });
+
+  it('should handle required text scan being an array', () => {
+    nock('https://cert.trustedform.com')
+    .post('/1234abc?scan[]=one&scan[]=two')
+    .reply(201, scan_fixture);
+
+    const client = new Client('asdf');
+    const options = {
+      cert_url: 'https://cert.trustedform.com/1234abc',
+      required_text : ['one', 'two']
+    }
+    client.claim(options, (err, res) => {
+      assert.isNull(err);
+      assert.exists(res.fingerprints.matching)
+    })
+  });
+
+  it('should handle forbidden text scan being an array', () => {
+    nock('https://cert.trustedform.com')
+    .post('/1234abc?scan[]=one&scan![]=two&scan![]=three')
+    .reply(201, scan_fixture);
+
+    const client = new Client('asdf');
+    const options = {
+      cert_url: 'https://cert.trustedform.com/1234abc',
+      required_text : 'one',
+      forbidden_text: ['two', 'three']
+    }
+    client.claim(options, (err, res) => {
+      assert.isNull(err);
+      assert.exists(res.fingerprints.matching)
+    })
+  });
 
   it('should handle an error', () => {
     nock('https://cert.trustedform.com')
