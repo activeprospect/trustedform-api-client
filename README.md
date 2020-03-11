@@ -15,9 +15,9 @@ const apiKey = '123456';
 const client = new Client(apiKey);
 
 // now you can use the client
-client.claim((err, lists) => {
+client.claim(options, (err, res, body) => {
   if (err) throw err;
-  console.log(lists);
+  console.log(body);
 });
 
 ```
@@ -29,16 +29,19 @@ All functions take a callback that is invoked with two parameters:
 * `err` &mdash; the error, if one occured, or null if one did not
 * `results` &mdash; the results of the call.
 
-##### `claim(options, ttl, callback)`
+##### `claim(options, callback)`
 
 The `claim()` function returns a JSON object containing the claim record
 
 Options:
-  - cert_url (required)
-  - vendor
-  - required text
-  - forbidden text
-  - email
-  - phone_1
-  - phone_2
-  - phone_3
+  - cert_url: string (required)
+  - vendor: string
+  - required text:  string OR array of strings
+  - forbidden text: string OR array of strings
+  - email: string
+  - phone_1: string
+  - phone_2: string
+  - phone_3: string
+
+### Node Version
+This library supports Node version 8 and above. Other versions may work, but they are not currently a priority for the authors of this repo. 

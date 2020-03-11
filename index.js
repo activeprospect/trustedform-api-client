@@ -14,27 +14,36 @@ class Client {
       this.base = {
         headers: {
           'Accept': 'application/json',
-          'Authorization': `Basic ${new Buffer(`X:${apiKey}`).toString('base64')}`
+          'Authorization': `Basic ${Buffer.from(`X:${apiKey}`).toString('base64')}`
         }
       }
   }
 
   claim(options, callback) { 
-    const { cert_url, required_text, forbidden_text } = options;
-    const url = new URL(cert_url);
-    
+    let  url = options.cert_url;
+    let queryString = '';
+
     for (const param in params) {
       if (options[param]) {
-        url.searchParams.append(params[param], options[param])
+        if (param === 'required_text' && Array.isArray(options[param])) {
+          queryString += mapArray('required_text', options[param])
+        } 
+        else if ( param === 'forbidden_text' && Array.isArray(options[param])) {
+          queryString += mapArray('forbidden_text', options[param])
+        }
+        else {
+          queryString += `${params[param]}=${options[param]}&`;
+        }
       }
     }
+    if (queryString !== '') url = `${url}?${queryString}`
 
-    this._request({ url: url.href }, (err, res, body) => {
+    this._request({ url }, (err, res, body) => {
       if (err) return callback(err);
       if (res.statusCode !== 201) {
         return callback(new TrustedFormError('Could not claim form', res.statusCode, body));
       }
-      callback(null, body);
+      callback(null, res, body);
     });
   }
 
@@ -59,10 +68,16 @@ class Client {
     });
   }
 }
-
+const mapArray = function(param, arr) {
+  let result = '';
+  for (let i = 0; i < arr.length; i ++) {
+    result += `${params[param]}=${arr[i]}&`;
+  }
+  return result;
+}
 const params = {
-  'required_text': 'scan',
-  'forbidden_text': 'scan!',
+  'required_text': 'scan[]',
+  'forbidden_text': 'scan![]',
   'reference': 'reference',
   'vendor': 'vendor',
   'email': 'email',
