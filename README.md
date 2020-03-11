@@ -36,9 +36,12 @@ The `claim()` function returns a JSON object containing the claim record
 Options:
   - cert_url: string (required)
   - vendor: string
-  - required text: string
-  - forbidden text: string
+  - required text:  string OR array of strings
+  - forbidden text: string OR array of strings
   - email: string
   - phone_1: string
   - phone_2: string
   - phone_3: string
+
+### Node Version
+This library supports Node version 8 and above. Other versions may work, but they are not currently a priority for the authors of this repo. 
