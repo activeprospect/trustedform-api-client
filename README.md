@@ -1,7 +1,7 @@
 # TrustedForm API Client
 This is a Node.js module for calling the TrustedForm API.
 
-[![Build Status](https://travis-ci.org/activeprospect/trustedform-api-client.svg?branch=master)](https://travis-ci.org/activeprospect/trustedform-api-client)
+[![Build Status](https://travis-ci.com/activeprospect/trustedform-api-client.svg?branch=master)](https://travis-ci.org/activeprospect/trustedform-api-client)
 
 ### Client
 
@@ -44,4 +44,4 @@ Options:
   - phone_3: string
 
 ### Node Version
-This library supports Node version 8 and above. Other versions may work, but they are not currently a priority for the authors of this repo. 
+This library supports Node version 8 and above. Other versions may work, but they are not currently a priority for the authors of this repository. 
