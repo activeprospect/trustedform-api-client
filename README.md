@@ -34,14 +34,18 @@ All functions take a callback that is invoked with two parameters:
 The `claim()` function returns a JSON object containing the claim record
 
 Options:
-  - cert_url: string (required)
-  - vendor: string
-  - required text:  string OR array of strings
-  - forbidden text: string OR array of strings
-  - email: string
-  - phone_1: string
-  - phone_2: string
-  - phone_3: string
+| parameter | type    | required | description                             |
+| --------- | ------- | -------- | --------------------------------------- |
+| `cert_url`| String | Yes | The url of the certificate  to claim.        |
+| `vendor`  | String | No | Value stored for grouping and sorting          |
+| `required_text` | String OR Array  | No | Text TrustedForm can confirm is in the snapshot |
+| `forbidden_text`  | String OR Array | No | Text TrustedForm can confirm is absent |
+| `email`  | String | No | Email used for fingerprinting - see docs below |
+| `phone_1`  | String | No | Phone used for fingerprinting - see docs below |
+| `phone_2`  | String | No | Phone used for fingerprinting - see docs below |
+| `phone_3`  | String | No | Phone used for fingerprinting - see docs below |
+
+For a more in-depth view of these options and how they work, you can visit our support article [here](https://support.activeprospect.com/hc/en-us/articles/201325449).
 
 ### Node Version
 This library supports Node version 8 and above. Other versions may work, but they are not currently a priority for the authors of this repository. 
