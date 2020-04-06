@@ -1,5 +1,6 @@
 const _ = require('lodash');
 const request = require('request');
+const qs = require('querystring');
 
 class TrustedFormError extends Error {
   constructor(message, statusCode, body) {
@@ -36,7 +37,7 @@ class Client {
         }
       }
     }
-    if (queryString !== '') url = `${url}?${queryString}`
+    if (queryString !== '') url = `${url}?${qs.escape(queryString)}`;
 
     this._request({ url }, (err, res, body) => {
       if (err) return callback(err);
@@ -52,7 +53,7 @@ class Client {
       url: `${options.url}`,
       method: 'POST',
       headers: _.merge({}, this.base.headers, options.headers)
-    }
+    };
     request(opts, (err, res, body) => {
       if (err) return callback(err);
       const contentType = res.headers['content-type'];
@@ -74,7 +75,7 @@ const mapArray = function(param, arr) {
     result += `${params[param]}=${arr[i]}&`;
   }
   return result;
-}
+};
 const params = {
   'required_text': 'scan[]',
   'forbidden_text': 'scan![]',
