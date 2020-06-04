@@ -20,26 +20,26 @@ class Client {
       }
   }
 
-  claim(options, callback) { 
-    let  url = options.cert_url;
-    let queryString = '';
+  claim(options, callback) {
+    let url = options.cert_url;
+    let body = {};
+
+    // ensure required and forbidden text are arrays
+    if (options.required_text && !_.isArray(options.required_text)) {
+      options.required_text = [ options.required_text ];
+    }
+    if (options.forbidden_text && !_.isArray(options.forbidden_text)) {
+      options.forbidden_text = [ options.forbidden_text ];
+    }
 
     for (const param in params) {
       if (options[param]) {
-        if (param === 'required_text' && Array.isArray(options[param])) {
-          queryString += mapArray('required_text', options[param])
-        } 
-        else if ( param === 'forbidden_text' && Array.isArray(options[param])) {
-          queryString += mapArray('forbidden_text', options[param])
-        }
-        else {
-          queryString += `${params[param]}=${options[param]}&`;
-        }
+        body[params[param]] = options[param];
       }
     }
-    if (queryString !== '') url = `${url}?${qs.escape(queryString)}`;
+    body = qs.stringify(body);
 
-    this._request({ url }, (err, res, body) => {
+    this._request({ url, body }, (err, res, body) => {
       if (err) return callback(err);
       if (res.statusCode !== 201) {
         return callback(new TrustedFormError('Could not claim form', res.statusCode, body));
@@ -50,9 +50,10 @@ class Client {
 
   _request(options, callback) {
     const opts = {
-      url: `${options.url}`,
+      url: options.url,
       method: 'POST',
-      headers: _.merge({}, this.base.headers, options.headers)
+      headers: _.merge({}, this.base.headers, options.headers),
+      body: options.body
     };
     request(opts, (err, res, body) => {
       if (err) return callback(err);
@@ -69,13 +70,7 @@ class Client {
     });
   }
 }
-const mapArray = function(param, arr) {
-  let result = '';
-  for (let i = 0; i < arr.length; i ++) {
-    result += `${params[param]}=${arr[i]}&`;
-  }
-  return result;
-};
+
 const params = {
   'required_text': 'scan[]',
   'forbidden_text': 'scan![]',

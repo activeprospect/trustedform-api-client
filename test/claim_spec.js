@@ -26,7 +26,7 @@ describe('Claim', () => {
 
   it('should add expected parameters to request', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan%5B%5D%3Dtest%26')
+    .post('/1234abc', 'scan%5B%5D=test')
     .reply(201, scan_fixture);
 
     const client = new Client('asdf');
@@ -42,7 +42,7 @@ describe('Claim', () => {
 
   it('should not add wildcard parameters', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan!%5B%5D%3Dtest%26')
+    .post('/1234abc', 'scan!%5B%5D=test')
     .reply(201, basic_fixture);
 
     const client = new Client('asdf');
@@ -59,7 +59,7 @@ describe('Claim', () => {
 
   it('should add multiple parameters', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan%5B%5D%3Dtest%26scan!%5B%5D%3Dwaldo%26')
+    .post('/1234abc', 'scan%5B%5D=test&scan!%5B%5D=waldo')
     .reply(201, scan_and_forbidden_fixture);
 
     const client = new Client('asdf');
@@ -77,7 +77,7 @@ describe('Claim', () => {
 
   it('should handle fingerprinting options', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?email%3Dtest%40test.com%26phone_1%3D123%26')
+    .post('/1234abc', 'email=test%40test.com&phone_1=123')
     .reply(201, fingerprint_fixture);
 
     const client = new Client('asdf');
@@ -94,7 +94,7 @@ describe('Claim', () => {
 
   it('should handle required text scan being an array', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan%5B%5D%3Done%26scan%5B%5D%3Dtwo%26')
+    .post('/1234abc', 'scan%5B%5D=one&scan%5B%5D=two')
     .reply(201, scan_fixture);
 
     const client = new Client('asdf');
@@ -110,7 +110,7 @@ describe('Claim', () => {
 
   it('should handle forbidden text scan being an array', () => {
     nock('https://cert.trustedform.com')
-    .post('/1234abc?scan%5B%5D%3Done%26scan!%5B%5D%3Dtwo%26scan!%5B%5D%3Dthree%26')
+    .post('/1234abc', 'scan%5B%5D=one&scan!%5B%5D=two&scan!%5B%5D=three')
     .reply(201, scan_fixture);
 
     const client = new Client('asdf');
