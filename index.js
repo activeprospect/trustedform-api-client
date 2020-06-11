@@ -42,7 +42,7 @@ class Client {
     this._request({ url, body }, (err, res, body) => {
       if (err) return callback(err);
       if (res.statusCode !== 201) {
-        return callback(new TrustedFormError('Could not claim form', res.statusCode, body));
+        return callback(new TrustedFormError('Could not claim form', res.statusCode, body), res, body);
       }
       callback(null, res, body);
     });
@@ -65,6 +65,9 @@ class Client {
         } catch (err) {
           return callback(err);
         }
+      }
+      else {
+        return callback(new TrustedFormError('Unrecognized response type', res.statusCode, body));
       }
       callback(null, res, body);
     });
