@@ -144,15 +144,15 @@ describe('Claim', () => {
   it('should handle a non-json response', () => {
     nock('https://cert.trustedform.com')
     .post('/1234abc')
-    .reply(404, '<html><body>Oops! Something went wrong.</body></html>');
+    .reply(500, '<html><body>Oops! Something went wrong.</body></html>');
 
     const client = new Client('asdf');
     const options = {
       cert_url: 'https://cert.trustedform.com/1234abc'
     };
     client.claim(options, (err, res) => {
-      assert.equal(err.statusCode, 404);
-      assert.equal(err.message, 'Could not claim form');
+      assert.equal(err.statusCode, 500);
+      assert.equal(err.message, 'Unrecognized response type');
     })
   })
 });
