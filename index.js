@@ -15,7 +15,8 @@ class Client {
       this.base = {
         headers: {
           'Accept': 'application/json',
-          'Authorization': `Basic ${Buffer.from(`X:${apiKey}`).toString('base64')}`
+          'Authorization': `Basic ${Buffer.from(`X:${apiKey}`).toString('base64')}`,
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
       }
   }
