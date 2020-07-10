@@ -11,6 +11,9 @@ const { basic_fixture,
 describe('Claim', () => {
   it('should send a request to the submitted url', () => {
     nock('https://cert.trustedform.com')
+    .matchHeader('Accept', 'application/json')
+    .matchHeader('Authorization', 'Basic WDphc2Rm')
+    .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
     .post('/1234abc')
     .reply(201, basic_fixture);
 
