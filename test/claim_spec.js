@@ -78,6 +78,25 @@ describe('Claim', () => {
     })
   });
 
+  it('should add specified headers', () => {
+    nock('https://cert.trustedform.com')
+      .matchHeader('api-version', '3.0')
+      .post('/1234abc')
+      .reply(201, basic_fixture);
+
+    const client = new Client('asdf');
+    const options = {
+      cert_url: 'https://cert.trustedform.com/1234abc',
+      headers: {
+        'api-version': '3.0'
+      }
+    };
+    client.claim(options, (err, res, body) => {
+      assert.isNull(err);
+      assert.equal(body.id, '123');
+    })
+  });
+
   it('should handle fingerprinting options', () => {
     nock('https://cert.trustedform.com')
     .post('/1234abc', 'email=test%40test.com&phone_1=123')

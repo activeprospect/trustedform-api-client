@@ -22,8 +22,7 @@ class Client {
   }
 
   claim(options, callback) {
-    let url = options.cert_url;
-    let body = {};
+    options.body = {};
 
     // ensure required and forbidden text are arrays
     if (options.required_text && !_.isArray(options.required_text)) {
@@ -35,12 +34,12 @@ class Client {
 
     for (const param in params) {
       if (options[param]) {
-        body[params[param]] = options[param];
+        options.body[params[param]] = options[param];
       }
     }
-    body = qs.stringify(body);
+    options.body = qs.stringify(options.body);
 
-    this._request({ url, body }, (err, res, body) => {
+    this._request(options, (err, res, body) => {
       if (err) return callback(err);
       if (res.statusCode !== 201) {
         return callback(new TrustedFormError('Could not claim form', res.statusCode, body), res, body);
@@ -51,7 +50,7 @@ class Client {
 
   _request(options, callback) {
     const opts = {
-      url: options.url,
+      url: options.cert_url,
       method: 'POST',
       headers: _.merge({}, this.base.headers, options.headers),
       body: options.body
