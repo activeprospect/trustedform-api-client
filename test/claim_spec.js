@@ -2,12 +2,27 @@ const assert = require('chai').assert;
 const nock = require('nock');
 const Client = require('../');
 
-const {
-  basicFixture,
-  scanFixture,
-  scanAndForbiddenFixture,
-  fingerprintFixture
-} = require('./fixtures');
+// "version 3.0" style response
+const apiResponse = {
+  fingerprints: {
+    matching: [
+      '456c6c7a59968bceccd208e9b9f4dde55b8e89f6',
+      'd511850d569bcd7802c30f54de34bb9f2b31eede'
+    ],
+    non_matching: []
+  },
+  id: '123',
+  masked_cert_url: 'https://cert.trustedform.com/4692b414d4f53be638549dc9d47c6399ac6666da',
+  outcome: 'success',
+  scans: {
+    found: [
+      'test'
+    ],
+    not_found: [
+      'blah'
+    ]
+  }
+};
 
 describe('Claim', () => {
   it('should send a request to the submitted url', () => {
@@ -16,7 +31,7 @@ describe('Claim', () => {
       .matchHeader('Authorization', 'Basic WDphc2Rm')
       .matchHeader('Content-Type', 'application/x-www-form-urlencoded')
       .post('/1234abc')
-      .reply(201, basicFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -31,7 +46,7 @@ describe('Claim', () => {
   it('should add expected parameters to request', () => {
     nock('https://cert.trustedform.com')
       .post('/1234abc', 'scan%5B%5D=test')
-      .reply(201, scanFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -47,7 +62,7 @@ describe('Claim', () => {
   it('should not add wildcard parameters', () => {
     nock('https://cert.trustedform.com')
       .post('/1234abc', 'scan!%5B%5D=test')
-      .reply(201, basicFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -64,7 +79,7 @@ describe('Claim', () => {
   it('should add multiple parameters', () => {
     nock('https://cert.trustedform.com')
       .post('/1234abc', 'scan%5B%5D=test&scan!%5B%5D=waldo')
-      .reply(201, scanAndForbiddenFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -75,7 +90,7 @@ describe('Claim', () => {
     client.claim(options, (err, res, body) => {
       assert.isNull(err);
       assert.equal(body.scans.found, 'test');
-      assert.equal(body.scans.not_found, 'waldo');
+      assert.equal(body.scans.not_found, 'blah');
     });
   });
 
@@ -83,7 +98,7 @@ describe('Claim', () => {
     nock('https://cert.trustedform.com')
       .matchHeader('api-version', '3.0')
       .post('/1234abc')
-      .reply(201, basicFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -101,7 +116,7 @@ describe('Claim', () => {
   it('should handle fingerprinting options', () => {
     nock('https://cert.trustedform.com')
       .post('/1234abc', 'email=test%40test.com&phone_1=123')
-      .reply(201, fingerprintFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -111,14 +126,14 @@ describe('Claim', () => {
     };
     client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.exists(body.fingerprints.matching);
+      assert.equal(body.fingerprints.matching.length, 2);
     });
   });
 
   it('should handle required text scan being an array', () => {
     nock('https://cert.trustedform.com')
       .post('/1234abc', 'scan%5B%5D=one&scan%5B%5D=two')
-      .reply(201, scanFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -127,14 +142,14 @@ describe('Claim', () => {
     };
     client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.exists(body.fingerprints.matching);
+      assert.equal(body.id, '123');
     });
   });
 
   it('should handle forbidden text scan being an array', () => {
     nock('https://cert.trustedform.com')
       .post('/1234abc', 'scan%5B%5D=one&scan!%5B%5D=two&scan!%5B%5D=three')
-      .reply(201, scanFixture);
+      .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
@@ -144,7 +159,7 @@ describe('Claim', () => {
     };
     client.claim(options, (err, res, body) => {
       assert.isNull(err);
-      assert.exists(body.fingerprints.matching);
+      assert.equal(body.id, '123');
     });
   });
 
