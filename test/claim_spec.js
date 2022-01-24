@@ -91,13 +91,14 @@ describe('Claim', () => {
 
   it('should add expected parameters to request', () => {
     nock('https://cert.trustedform.com')
-      .post('/1234abc', 'scan%5B%5D=test')
+      .post('/1234abc', 'scan%5B%5D=test&scan_delimiter=%7C')
       .reply(201, apiResponse);
 
     const client = new Client('asdf');
     const options = {
       cert_url: 'https://cert.trustedform.com/1234abc',
-      required_text: 'test'
+      required_text: 'test',
+      scan_delimiter: '|'
     };
     client.claim(options, (err, res, body) => {
       assert.isNull(err);

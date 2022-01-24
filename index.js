@@ -78,6 +78,7 @@ const params = {
   forbidden_text: 'scan![]',
   reference: 'reference',
   vendor: 'vendor',
+  scan_delimiter: 'scan_delimiter',
   email: 'email',
   phone_1: 'phone_1',
   phone_2: 'phone_2',
