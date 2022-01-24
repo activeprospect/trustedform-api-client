@@ -1,6 +1,6 @@
 {
   "name": "trustedform-api-client",
-  "version": "1.0.7",
+  "version": "1.0.6",
   "description": "A Node.js module for calling the TrustedForm API.",
   "main": "index.js",
   "scripts": {
