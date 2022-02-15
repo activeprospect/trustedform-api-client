@@ -32,6 +32,7 @@ class Client {
       options.forbidden_text = [options.forbidden_text];
     }
 
+    const params = this._getParams(_.get(options.headers, 'api-version'));
     for (const param in params) {
       if (options[param]) {
         options.body[params[param]] = options[param];
@@ -71,9 +72,16 @@ class Client {
       callback(null, res, body);
     });
   }
+
+  _getParams (versionHeader) {
+    if (versionHeader !== '3.0') return paramsV2;
+
+    // TF V3 APi has different params for scan text
+    return Object.assign(paramsV2, { required_text: 'required_scan_terms[]', forbidden_text: 'forbidden_scan_terms[]' });
+  }
 }
 
-const params = {
+const paramsV2 = {
   required_text: 'scan[]',
   forbidden_text: 'scan![]',
   reference: 'reference',

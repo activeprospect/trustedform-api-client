@@ -70,7 +70,7 @@ const apiResponse = {
   }
 };
 
-describe('Claim', () => {
+describe('Claim ("v2")', () => {
   it('should send a request to the submitted url', () => {
     nock('https://cert.trustedform.com')
       .matchHeader('Accept', 'application/json')
@@ -238,6 +238,44 @@ describe('Claim', () => {
     client.claim(options, (err, res) => {
       assert.equal(err.statusCode, 500);
       assert.equal(err.message, 'Unrecognized response type');
+    });
+  });
+
+  describe('Version 3.0', () => {
+    it('should add v3 scan parameters to request', () => {
+      nock('https://cert.trustedform.com')
+        .post('/1234abc', 'required_scan_terms%5B%5D=test')
+        .reply(201, apiResponse);
+
+      const client = new Client('asdf');
+      const options = {
+        cert_url: 'https://cert.trustedform.com/1234abc',
+        required_text: 'test',
+        headers: { 'api-version': '3.0' }
+      };
+      client.claim(options, (err, res, body) => {
+        assert.isNull(err);
+        assert.equal(body.scans.found, 'test');
+      });
+    });
+
+    it('should add multiple parameters', () => {
+      nock('https://cert.trustedform.com')
+        .post('/1234abc', 'required_scan_terms%5B%5D=test&forbidden_scan_terms%5B%5D=waldo')
+        .reply(201, apiResponse);
+
+      const client = new Client('asdf');
+      const options = {
+        cert_url: 'https://cert.trustedform.com/1234abc',
+        required_text: 'test',
+        forbidden_text: 'waldo',
+        headers: { 'api-version': '3.0' }
+      };
+      client.claim(options, (err, res, body) => {
+        assert.isNull(err);
+        assert.equal(body.scans.found, 'test');
+        assert.equal(body.scans.not_found, 'blah');
+      });
     });
   });
 });
